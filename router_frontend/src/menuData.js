@@ -51,6 +51,7 @@ export const menuStructure = [
           { label: "Radio Settings", path: "/radio", desc: "Configure radio." },
           { label: "SSID", path: "/ssid", desc: "Manage SSIDs." },
           { label: "Security", path: "/security", desc: "WLAN security options." },
+          { label: "Advanced", path: "/advanced", desc: "Advanced WLAN options." },
         ]
       },
       { label: "WAN", path: "/wan", desc: "WAN connection settings." }

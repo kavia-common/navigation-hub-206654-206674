@@ -3,6 +3,10 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import TopBar from "./components/TopBar";
 import { menuStructure, getBreadcrumbPath, findMenuItemByPath } from "./menuData";
+import LanIPv4 from "./pages/LanIPv4";
+import LanIPv6 from "./pages/LanIPv6";
+import Wan from "./pages/Wan";
+import WlanAdvanced from "./pages/WlanAdvanced";
 
 // Utility: flatten all leaf paths for routing
 function collectLeafRoutes(structure, base = "") {
@@ -95,12 +99,19 @@ export default function App() {
           onLogout={handleLogout}
         />
         <Routes>
+          {/* LAN IPv4 and IPv6 */}
+          <Route path="/basic-setup/lan/ipv4" element={<LanIPv4 />} />
+          <Route path="/basic-setup/lan/ipv6" element={<LanIPv6 />} />
+
+          {/* WAN (Basic Setup) */}
+          <Route path="/basic-setup/wan" element={<Wan />} />
+
+          {/* WLAN Advanced (mapped under Basic Setup > WLAN > Security? We'll route Advanced explicitly) */}
+          <Route path="/wlan/advanced" element={<WlanAdvanced />} />
+
+          {/* Fallback to generic */}
           {leafRoutes.map((route) => (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={<MainContent />}
-            />
+            <Route key={route.path} path={route.path} element={<MainContent />} />
           ))}
           <Route path="*" element={<MainContent />} />
         </Routes>
